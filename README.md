@@ -1,3 +1,3 @@
 
-# Asyncio (understanding how works)
+# Asyncio (understanding how it works)
 
