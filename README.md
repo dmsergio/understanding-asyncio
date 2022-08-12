@@ -1,6 +1,8 @@
 
 # Asyncio (understanding how it works)
 
+Based on the book [Using asyncio in Python](https://www.oreilly.com/library/view/using-asyncio-in/9781492075325/).
+
 Here is the official Python documentation for [asyncio](https://docs.python.org/3/library/asyncio.html).
 
 ### Subset of the main _API asyncio_ offers to end-user developers
@@ -10,3 +12,27 @@ Here is the official Python documentation for [asyncio](https://docs.python.org/
 3. Creating a _task_ to be run on the loop.
 4. Waiting for multiple tasks to complete.
 5. Closing the loop after all concurrent tasks have completed.
+
+### Features of asyncio arranged in a hierarchy
+(The most important tiers for end-user developers are highlighted in bold)
+
+| Level  | Concept                    | Implementation                                                                |
+|--------|----------------------------|-------------------------------------------------------------------------------|
+| Tier 9 | **Network: streams**       | StreamReader, StreamWritter, asyncio.open_connecion(), asyncio.start_server() |
+| Tier 8 | Network: TCP & UPD         | Protocol                                                                      |
+| Tier 7 | Network: transports        | BaseTransport                                                                 |
+| Tier 6 | **Tools**                  | asyncio.Queue                                                                 |
+| Tier 5 | **Subprocesses & threads** | run_in_executor(), asuncio.subprocess                                         |
+| Tier 4 | Tasks                      | asyncio.Task, asyncio.create_task()                                           |
+| Tier 3 | Futures                    | asyncio.Future                                                                |
+| Tier 2 | **Event loop**             | asyncio.run(), BaseEventLoop                                                  |
+| Tier 1 | **Coroutines**             | async def, async with, async for, await                                       |
+
+#### Which I should focus it to use the *asyncio* library?
+For an end-user developer, you should to learn the following tears:
+
+- **Tier 1**: Is essential understanding how to write *async def* functions and use *await* to call and execute other corouteines.
+- **Tier 2**: Start, shutdown, and interact with the event loop in essential.
+- **Tier 5**: Executors are necessary to use blocking code in your *async* application.
+- **Tier 6**: Use *asyncio.Queue* to distribute data between coroutines.
+- **Tier 9**: The streams API gives you the simples way to handle socket communication over a network.
