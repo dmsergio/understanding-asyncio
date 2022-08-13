@@ -36,3 +36,26 @@ For an end-user developer, you should to learn the following tears:
 - **Tier 5**: Executors are necessary to use blocking code in your *async* application.
 - **Tier 6**: Use *asyncio.Queue* to distribute data between coroutines.
 - **Tier 9**: The streams API gives you the simples way to handle socket communication over a network.
+
+### Coroutines
+A coroutine is an awaitable function that the result will be returned when the event loop has been obtained its result.
+
+Example code:
+
+```python
+import asyncio
+
+async def f():
+    await asyncio.wait(0)
+    return "coroutine finished!"
+
+result = asyncio.run(f())
+```
+
+- **asyncio.run()** should be used as a main entry point for asyncio programs. The function does the followings steps:
+  1. It ensures doesn't exist another event loop running in the same thread.
+  2. Check has received a coroutine as a main argument.
+  3. It creates a new event loop.
+  4. It executes the coroutine and returns its value.
+  5. It ensures to finish all the coroutines.
+  6. It ensures to close the event loop.
