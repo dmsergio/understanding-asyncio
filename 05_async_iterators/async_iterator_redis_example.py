@@ -4,7 +4,7 @@ import aioredis
 
 
 async def main():
-    redis = await aioredis.from_url("localhost")
+    redis = await aioredis.from_url(url="redis://localhost", port=6379)
     keys = ["Americas", "Africa", "Europe", "Asia"]
 
     async for value in OneAtTime(redis, keys):
