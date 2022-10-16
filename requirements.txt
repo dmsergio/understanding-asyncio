@@ -1,5 +1,7 @@
 aiohttp
+aiohttp-sse
 beautifulsoup4
 lxml
+psutil
 pyzmq
 Twisted
